@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee+Hairline');
+
+.Navbar {
+    height: 100%;
+    width: 62px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    border-right: 3px solid white;
+}
+
+
+.Logo {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Bungee Hairline', cursive;
+    color: #3F464C;
+}
+
+.Logo span {
+    display: block;
+}
+
+.NavButtons {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30%;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.NavButtons div {
+    display: block;
+}
