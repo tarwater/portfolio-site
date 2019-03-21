@@ -1,3 +1,7 @@
+.Button {
+    cursor: pointer;
+}
+
 .Icon {
     opacity: 1;
     visibility: visible;
@@ -5,7 +9,7 @@
     position: absolute;
     width: 100%;
     text-align: center;
-    left:0;
+    left: 0;
     font-size: 1.5em;
 }
 
@@ -21,7 +25,7 @@
     position: absolute;
     width: 100%;
     text-align: center;
-    left:0;
+    left: 0;
     line-height: 1.5em;
     background: linear-gradient(to right, #A800FF, #0079FF, #00F11D, #FFEF00, #FF7F00, #FF0900);
     background-size: 400% 400%;
@@ -35,6 +39,11 @@
     visibility: visible;
 }
 
+.Icon.Active {
+    /*animation: Colorshift 30s linear infinite;*/
+    border-right: 2px solid #303030;
+}
+
 @keyframes Gradient {
     0% {
         background-position: 0 50%
@@ -46,3 +55,4 @@
         background-position: 0 50%
     }
 }
+

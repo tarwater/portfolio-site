@@ -19,6 +19,7 @@ class NavButton extends Component {
 
     render() {
         let iconClasses, textClasses;
+
         if (this.state.hovering) {
             iconClasses = Classes.Icon + " " + Classes.Hide;
             textClasses = Classes.Text + " " + Classes.Show;
@@ -27,16 +28,17 @@ class NavButton extends Component {
             textClasses = Classes.Text;
         }
 
+        if(this.props.page === this.props.text){
+            iconClasses = iconClasses + " " + Classes.Active;
+        }
+
         return (
-            <div onMouseEnter={this.handleOnHover} onMouseLeave={this.handleOnLeave}>
-                <a href="">
-                    <span className={iconClasses}><FontAwesomeIcon icon={this.props.icon}/></span>
-                    <span className={textClasses}>{this.props.text}</span>
-                </a>
+            <div className={Classes.Button} onMouseEnter={this.handleOnHover} onMouseLeave={this.handleOnLeave} onClick={() => this.props.clickHandler(this.props.text)}>
+                <span className={iconClasses}><FontAwesomeIcon icon={this.props.icon}/></span>
+                <span className={textClasses}>{this.props.text}</span>
             </div>
         )
     }
-
 }
 
 export default NavButton;
