@@ -1,0 +1,48 @@
+.Icon {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.5s;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left:0;
+    font-size: 1.5em;
+}
+
+.Icon.Hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.Text {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left:0;
+    line-height: 1.5em;
+    background: linear-gradient(to right, #A800FF, #0079FF, #00F11D, #FFEF00, #FF7F00, #FF0900);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: Gradient 1.5s linear infinite;
+}
+
+.Text.Show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0 50%
+    }
+}
