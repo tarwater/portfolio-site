@@ -3,9 +3,9 @@ import classes from './App.module.css';
 import NavBar from "./components/Navbar/Navbar";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome, faUser, faTools, faPaperPlane, faKeyboard } from '@fortawesome/free-solid-svg-icons'
+import {fab} from '@fortawesome/free-brands-svg-icons';
 
-
-library.add(faHome, faUser, faTools, faPaperPlane, faKeyboard);
+library.add(faHome, faUser, faTools, faPaperPlane, faKeyboard, fab);
 
 class App extends Component {
   render() {

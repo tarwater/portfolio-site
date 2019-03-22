@@ -10,14 +10,28 @@
     /*background-color: #101819 ;*/
 }
 
-
 .Logo img {
     width: 100%;
     margin: auto;
+    z-index: 100;
+}
+
+.Logo:hover {
+    animation: LogoAnimation 1.5s linear infinite;
+}
+
+@keyframes LogoAnimation {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg) ;
+    }
 }
 
 .NavButtons {
-    list-style: none;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -28,4 +42,73 @@
 
 .NavButtons div {
     display: block;
+}
+
+.SecondaryNav {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    height: 30%;
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 960px) {
+    .Navbar {
+        height: 60px;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        /*border-right: 1px solid black;*/
+        /*background-color: #101819 ;*/
+    }
+
+
+    .Logo  {
+        height: 100%;
+        max-width: 62px;
+        display: inline-block;
+    }
+
+    .NavButtons {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        position: absolute;
+        text-align: center;
+        margin: auto auto auto -50px;
+    }
+
+    .SecondaryNav {
+        display: inline-flex;
+        flex-direction: row-reverse;
+        justify-content: end;
+        height: 100%;
+        width: 10%;
+        right: 0;
+        position: absolute;
+        text-align: center;
+        margin: auto auto auto -50px;
+        animation: SecondaryAppear .5s linear;
+    }
+
+
+    @keyframes SecondaryAppear {
+        from {
+            opacity: 0;
+            transform: translate(50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate(0px);
+        }
+    }
 }

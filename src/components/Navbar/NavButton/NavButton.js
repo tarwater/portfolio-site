@@ -28,13 +28,16 @@ class NavButton extends Component {
             textClasses = Classes.Text;
         }
 
-        if(this.props.page === this.props.text){
+        if (this.props.page === this.props.text) {
             iconClasses = iconClasses + " " + Classes.Active;
         }
 
         return (
-            <div className={Classes.Button} onMouseEnter={this.handleOnHover} onMouseLeave={this.handleOnLeave} onClick={() => this.props.clickHandler(this.props.text)}>
-                <span className={iconClasses}><FontAwesomeIcon icon={this.props.icon}/></span>
+            <div className={Classes.Button} onMouseEnter={this.handleOnHover} onMouseLeave={this.handleOnLeave}
+                 onClick={() => this.props.clickHandler(this.props.text)}>
+                <span className={iconClasses}>
+                    <FontAwesomeIcon icon={this.props.icon}/>
+                </span>
                 <span className={textClasses}>{this.props.text}</span>
             </div>
         )

@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import classes from './Navbar.module.css';
 import NavButton from "./NavButton/NavButton";
 import LogoImg from '../../assets/myLogo.png';
+import SecondaryNavButton from "./SecondaryNavButton/SecondaryNavButton";
 
 class NavBar extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -30,8 +31,14 @@ class NavBar extends Component {
                     <NavButton page={this.state.page} icon={"user"} text={"about"} clickHandler={this.clickHandler}/>
                     <NavButton page={this.state.page} icon={"tools"} text={"skills"} clickHandler={this.clickHandler}/>
                     <NavButton page={this.state.page} icon={"keyboard"} text={"work"} clickHandler={this.clickHandler}/>
-                    <NavButton page={this.state.page} icon={"paper-plane"} text={"contact"} clickHandler={this.clickHandler}/>
+                    <NavButton page={this.state.page} icon={"paper-plane"} text={"contact"}
+                               clickHandler={this.clickHandler}/>
                 </div>
+                <div className={classes.SecondaryNav}>
+                    <SecondaryNavButton link={"https://github.com/tarwater"} icon={['fab', 'linkedin']}/>
+                    <SecondaryNavButton link={"https://www.linkedin.com/in/clay-holt"} icon={['fab', "github"]}/>
+                </div>
+
             </div>
         )
     }
