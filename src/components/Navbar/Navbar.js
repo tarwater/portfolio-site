@@ -3,6 +3,7 @@ import classes from './Navbar.module.css';
 import NavButton from "./NavButton/NavButton";
 import LogoImg from '../../assets/myLogo.png';
 import SecondaryNavButton from "./SecondaryNavButton/SecondaryNavButton";
+import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 
 class NavBar extends Component {
 
@@ -37,6 +38,9 @@ class NavBar extends Component {
                 <div className={classes.SecondaryNav}>
                     <SecondaryNavButton link={"https://github.com/tarwater"} icon={['fab', 'linkedin']}/>
                     <SecondaryNavButton link={"https://www.linkedin.com/in/clay-holt"} icon={['fab', "github"]}/>
+                </div>
+                <div className={classes.HamburgerMenuContainer}>
+                    <HamburgerMenu/>
                 </div>
 
             </div>

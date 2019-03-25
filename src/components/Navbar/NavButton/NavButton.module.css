@@ -60,7 +60,6 @@
 
     .Button {
         width: 60px;
-        /*display: block;*/
         height: 100%;
         animation: Appear 1s linear;
     }
@@ -76,7 +75,6 @@
     }
 
     .Icon.Active {
-        /*animation: Colorshift 30s linear infinite;*/
         border-bottom: 2px solid #303030;
         border-right: none;
     }
@@ -99,5 +97,6 @@
             opacity: 1;
         }
     }
-
 }
+
+

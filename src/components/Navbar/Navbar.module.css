@@ -10,10 +10,13 @@
     /*background-color: #101819 ;*/
 }
 
+.Logo {
+    z-index: 100;
+}
+
 .Logo img {
     width: 100%;
     margin: auto;
-    z-index: 100;
 }
 
 .Logo:hover {
@@ -54,6 +57,10 @@
     bottom: 0;
     position: absolute;
     margin-bottom: 25px;
+}
+
+.HamburgerMenuContainer {
+    display: none;
 }
 
 @media (max-width: 960px) {
@@ -110,5 +117,22 @@
             opacity: 1;
             transform: translate(0px);
         }
+    }
+}
+
+@media (max-width: 531px){
+    .NavButtons {
+        display: none;
+    }
+
+    .SecondaryNav {
+        display: none;
+    }
+
+    .HamburgerMenuContainer {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 }
