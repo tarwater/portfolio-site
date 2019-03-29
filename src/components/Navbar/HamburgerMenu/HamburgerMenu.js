@@ -5,7 +5,7 @@ import classes from './HamburgerMenu.module.css';
 const HamburgerMenu = (props) => {
 
     return (
-        <div className={classes.HamburgerMenu}>
+        <div onClick={props.clickHandler} className={classes.HamburgerMenu}>
             <FontAwesomeIcon icon="bars"/>
         </div>
     );

@@ -60,7 +60,7 @@
 }
 
 .MobileNav {
-    display: none;
+    /*display: none;*/
 }
 
 .HamburgerMenuContainer {
@@ -142,5 +142,18 @@
 
     .MobileNav {
         display: block;
+        /*animation: slide 1.5s linear;*/
+        transform: translate(100%);
     }
+
+    .MobileNavShow {
+        transform: translate(0%);
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .MobileNavHide {
+        transform: translate(100%);
+        transition: transform 0.5s ease-in-out;
+    }
+
 }
