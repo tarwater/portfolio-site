@@ -4,6 +4,7 @@ import NavButton from "./NavButton/NavButton";
 import LogoImg from '../../assets/myLogo.png';
 import SecondaryNavButton from "./SecondaryNavButton/SecondaryNavButton";
 import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
+import MobileNavBar from "./MobileNavBar/MobileNavBar";
 
 class NavBar extends Component {
 
@@ -41,6 +42,19 @@ class NavBar extends Component {
                 </div>
                 <div className={classes.HamburgerMenuContainer}>
                     <HamburgerMenu/>
+                </div>
+                <div className={classes.MobileNav}>
+                    <MobileNavBar page={this.state.page} clickHandler={this.clickHandler}>
+                        <NavButton page={this.state.page} icon={"home"} text={"home"} clickHandler={this.clickHandler}/>
+                        <NavButton page={this.state.page} icon={"user"} text={"about"}
+                                   clickHandler={this.clickHandler}/>
+                        <NavButton page={this.state.page} icon={"tools"} text={"skills"}
+                                   clickHandler={this.clickHandler}/>
+                        <NavButton page={this.state.page} icon={"keyboard"} text={"work"}
+                                   clickHandler={this.clickHandler}/>
+                        <NavButton page={this.state.page} icon={"paper-plane"} text={"contact"}
+                                   clickHandler={this.clickHandler}/>
+                    </MobileNavBar>
                 </div>
 
             </div>
