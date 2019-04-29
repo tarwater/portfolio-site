@@ -1,0 +1,39 @@
+.Text {
+    margin-top: 200px;
+    margin-left: 100px;
+}
+
+
+.Text h2 {
+    font-size: 1em;
+}
+
+@media (min-width: 530px){
+
+    .Text {
+        margin-left: 150px;
+    }
+
+    .Text h1{
+        font-size: 2.2em;
+    }
+
+    .Text h2 {
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width: 960px){
+
+    .Text {
+        margin-left: 200px;
+    }
+
+    .Text h1{
+        font-size: 2.5em;
+    }
+
+    .Text h2 {
+        font-size: 1.3em;
+    }
+}

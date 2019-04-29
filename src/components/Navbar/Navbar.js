@@ -12,16 +12,10 @@ class NavBar extends Component {
         super(props);
 
         this.state = {
-            page: "home", // could also be about, skills, work, contact
             showMobileNav: false
-        }
-    }
+        };
 
-    navButtonClickHandler = (page) => {
-        this.setState({
-            page: page
-        });
-    };
+    }
 
     hamburgerClick = () => {
         this.setState({
@@ -45,16 +39,16 @@ class NavBar extends Component {
                     <img src={LogoImg} alt="logo"/>
                 </div>
                 <div className={classes.NavButtons}>
-                    <NavButton page={this.state.page} icon={"home"} text={"home"}
-                               clickHandler={this.navButtonClickHandler}/>
-                    <NavButton page={this.state.page} icon={"user"} text={"about"}
-                               clickHandler={this.navButtonClickHandler}/>
-                    <NavButton page={this.state.page} icon={"tools"} text={"skills"}
-                               clickHandler={this.navButtonClickHandler}/>
-                    <NavButton page={this.state.page} icon={"keyboard"} text={"work"}
-                               clickHandler={this.navButtonClickHandler}/>
-                    <NavButton page={this.state.page} icon={"paper-plane"} text={"contact"}
-                               clickHandler={this.navButtonClickHandler}/>
+                    <NavButton page={this.props.page} icon={"home"} text={"home"}
+                               clickHandler={this.props.pageChangeHandler}/>
+                    <NavButton page={this.props.page} icon={"user"} text={"about"}
+                               clickHandler={this.props.pageChangeHandler}/>
+                    <NavButton page={this.props.page} icon={"tools"} text={"skills"}
+                               clickHandler={this.props.pageChangeHandler}/>
+                    <NavButton page={this.props.page} icon={"keyboard"} text={"work"}
+                               clickHandler={this.props.pageChangeHandler}/>
+                    <NavButton page={this.props.page} icon={"paper-plane"} text={"contact"}
+                               clickHandler={this.props.pageChangeHandler}/>
                 </div>
                 <div className={classes.SecondaryNav}>
                     <SecondaryNavButton link={"https://github.com/tarwater"} icon={['fab', 'linkedin']}/>
@@ -64,17 +58,17 @@ class NavBar extends Component {
                     <HamburgerMenu clickHandler={this.hamburgerClick}/>
                 </div>
                 <div className={mobileNavClasses}>
-                    <MobileNavBar page={this.state.page} >
-                        <NavButton page={this.state.page} icon={"home"} text={"home"}
-                                   clickHandler={this.navButtonClickHandler}/>
-                        <NavButton page={this.state.page} icon={"user"} text={"about"}
-                                   clickHandler={this.navButtonClickHandler}/>
-                        <NavButton page={this.state.page} icon={"tools"} text={"skills"}
-                                   clickHandler={this.navButtonClickHandler}/>
-                        <NavButton page={this.state.page} icon={"keyboard"} text={"work"}
-                                   clickHandler={this.navButtonClickHandler}/>
-                        <NavButton page={this.state.page} icon={"paper-plane"} text={"contact"}
-                                   clickHandler={this.navButtonClickHandler}/>
+                    <MobileNavBar page={this.props.page} >
+                        <NavButton page={this.props.page} icon={"home"} text={"home"}
+                                   clickHandler={this.props.pageChangeHandler}/>
+                        <NavButton page={this.props.page} icon={"user"} text={"about"}
+                                   clickHandler={this.props.pageChangeHandler}/>
+                        <NavButton page={this.props.page} icon={"tools"} text={"skills"}
+                                   clickHandler={this.props.pageChangeHandler}/>
+                        <NavButton page={this.props.page} icon={"keyboard"} text={"work"}
+                                   clickHandler={this.props.pageChangeHandler}/>
+                        <NavButton page={this.props.page} icon={"paper-plane"} text={"contact"}
+                                   clickHandler={this.props.pageChangeHandler}/>
                     </MobileNavBar>
                 </div>
 
