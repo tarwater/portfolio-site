@@ -18,6 +18,9 @@ class Home extends Component {
                     <h2>Full-stack dev | Problem Solver</h2>
                     <Button clickHandler={this.clickHandle}>CONTACT ME</Button>
                 </div>
+                <canvas className={classes.Canvas} id="scene">
+                </canvas>
+                <input id="copy" type="hidden" value="♥"/>
             </div>
         )
     }
