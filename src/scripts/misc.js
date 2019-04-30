@@ -35,21 +35,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
     }
 
-    let buttons = document.getElementsByTagName("button");
-    let interval;
-
-    for (let btn of buttons) {
-        btn.addEventListener("mouseover", function (e) {
-            interval = window.setInterval(function () {
-                let color = colors.shift();
-                colors.push(color);
-                e.target.style.color = color;
-            }, 130)
-        });
-
-        btn.addEventListener("mouseout", function (e) {
-            window.clearInterval(interval);
-            e.target.style.color = '';
-        });
-    }
 });

@@ -1,0 +1,30 @@
+.Button {
+    margin-top: 25px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 0.25em;
+    font-size: .8em;
+    font-family: 'Reem Kufi', sans-serif;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.Hover {
+    background: linear-gradient(to right, #A800FF, #0079FF, #00F11D, #FFEF00, #FF7F00, #FF0900);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: Gradient 1.5s linear infinite;
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0 50%
+    }
+}

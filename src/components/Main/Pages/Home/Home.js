@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import classes from './Home.module.css';
+import Button from '../../../UI/Button/Button';
 
 class Home extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    // }
+    clickHandle = () => {
+        this.props.pageChangeHandler("contact")
+    };
 
     render() {
 
@@ -15,7 +16,7 @@ class Home extends Component {
                     <h1>Hi,</h1><h1>I'm Clay,</h1><h1>web developer</h1>
                     <br/>
                     <h2>Full-stack dev | Problem Solver</h2>
-                    <button className={classes.Contact} onClick={() => {this.props.pageChangeHandler("contact")}}>CONTACT ME</button>
+                    <Button clickHandler={this.clickHandle}>CONTACT ME</Button>
                 </div>
             </div>
         )
