@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("h2"));
     textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("p"));
 
-    const colors = ['#A800FF', '#0079FF', '#00F11D', '#FFEF00', '#FF7F00', '#FF0900'];
+    let colors = ['#A800FF', '#0079FF', '#00F11D', '#FFEF00', '#FF7F00', '#FF0900'];
 
     for (let elem of textItems) {
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     let blasts = document.getElementsByClassName("blast");
 
-    for(let blast of blasts){
+    for (let blast of blasts) {
         blast.addEventListener("mouseover", function (e) {
             e.target.style.color = colors[Math.floor(Math.random() * colors.length)];
             e.target.classList.add("bounce");
@@ -31,6 +31,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
 
         blast.addEventListener("mouseleave", function (e) {
+            e.target.style.color = '';
+        });
+    }
+
+    let buttons = document.getElementsByTagName("button");
+    let interval;
+
+    for (let btn of buttons) {
+        btn.addEventListener("mouseover", function (e) {
+            interval = window.setInterval(function () {
+                let color = colors.shift();
+                colors.push(color);
+                e.target.style.color = color;
+            }, 130)
+        });
+
+        btn.addEventListener("mouseout", function (e) {
+            window.clearInterval(interval);
             e.target.style.color = '';
         });
     }

@@ -29,7 +29,7 @@ class App extends Component {
         return (
             <div className={classes.App}>
                 <NavBar page={this.state.page} pageChangeHandler={this.pageChangeHandler}/>
-                <Main page={this.state.page}/>
+                <Main page={this.state.page} pageChangeHandler={this.pageChangeHandler}/>
             </div>
         );
     }

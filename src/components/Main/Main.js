@@ -14,10 +14,13 @@ class Main extends Component {
 
         switch (this.props.page) {
             case "home":
-                content = <Home/>;
+                content = <Home pageChangeHandler={this.props.pageChangeHandler}/>;
+                break;
+            case "contact":
+                console.log("contact");
                 break;
             default:
-                content = <Home/>;
+                content = <Home pageChangeHandler={this.props.pageChangeHandler}/>;
         }
 
         return (
