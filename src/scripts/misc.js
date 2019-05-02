@@ -1,8 +1,15 @@
+import markerImg from '../assets/myMapMarker.png';
 
-const colors = ['#A800FF', '#0079FF', '#00F11D', '#FFEF00', '#FF7F00', '#FF0900'];
+const colors = ['#A800FF',
+    '#0079ff',
+    '#00f11d',
+    '#FFEF00',
+    '#FF7F00',
+    '#FF0900'];
 let textItems = [];
 
-document.addEventListener("DOMContentLoaded", function (e) {
+export function drawParticles() {
+
     // home page text particles
 
     let canvas = document.querySelector("#scene"),
@@ -93,15 +100,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         let divisor;
 
-        if(ww > 960){
+        if (ww > 960) {
             ctx.font = "bold " + (wh / 1.8) + "px Reem Kufi";
             ctx.textAlign = "left";
-            ctx.fillText(copy.value, ww / 1.6, wh / 1.5 );
+            ctx.fillText(copy.value, ww / 1.6, wh / 1.5);
             divisor = 260;
-        } else if(ww > 530){
+        } else if (ww > 530) {
             ctx.font = "bold " + (wh / 2.5) + "px Reem Kufi";
             ctx.textAlign = "center";
-            ctx.fillText(copy.value, ww / 2, wh / 1.1 );
+            ctx.fillText(copy.value, ww / 2, wh / 1.1);
             divisor = 150;
         } else {
             return;
@@ -121,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
             }
         }
         amount = particles.length;
-
     }
 
     function onMouseClick() {
@@ -146,8 +152,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     window.addEventListener("touchend", onTouchEnd);
     initScene();
     requestAnimationFrame(render);
-
-});
+}
 
 export function textEffects() {
 
@@ -188,9 +193,212 @@ export function textEffects() {
         });
     }
 
-    function makeOpaque(e, delay){
+    function makeOpaque(e, delay) {
         setTimeout(function () {
             e.style.opacity = "1";
         }, delay);
     }
+}
+
+export function initGoogleMap() {
+
+    const loadGoogleMapsApi = require('load-google-maps-api');
+
+    loadGoogleMapsApi({
+        'key': 'AIzaSyATy_m53ycMWWqUKHe6psCEtja9_IvMmBY'
+    }).then(function (google) {
+        // Styles a map in night mode.
+        const map = new google.Map(document.getElementById('map'), {
+            center: {lat: 35.221678, lng: -80.817},
+            zoom: 12,
+            disableDefaultUI: true,
+            styles: [
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e9e9e9"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 29
+                        },
+                        {
+                            "weight": 0.2
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 18
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 16
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        },
+                        {
+                            "lightness": 21
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dedede"
+                        },
+                        {
+                            "lightness": 21
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 16
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "saturation": 36
+                        },
+                        {
+                            "color": "#333333"
+                        },
+                        {
+                            "lightness": 40
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f2f2f2"
+                        },
+                        {
+                            "lightness": 19
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#fefefe"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#fefefe"
+                        },
+                        {
+                            "lightness": 17
+                        },
+                        {
+                            "weight": 1.2
+                        }
+                    ]
+                }
+            ]
+        });
+
+        const latLng =
+            {lat: 35.221678, lng: -80.817};
+
+        const marker = new google.Marker({
+            position: latLng,
+            map: map,
+            icon: markerImg
+        });
+
+
+    });
 }

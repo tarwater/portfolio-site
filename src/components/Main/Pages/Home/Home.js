@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import classes from './Home.module.css';
 import Button from '../../../UI/Button/Button';
+import {drawParticles} from "../../../../scripts/misc";
 
 class Home extends Component {
 
     clickHandle = () => {
         this.props.pageChangeHandler("contact")
     };
+
+    componentDidMount() {
+        drawParticles();
+    }
 
     render() {
 

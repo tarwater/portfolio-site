@@ -1,4 +1,56 @@
 .Main {
-    margin-top: 200px;
-    margin-left: 100px;
+    margin-top: 100px;
+    padding: 20px;
 }
+
+.Main h1 {
+    font-size: 2.5em;
+}
+
+.Main input {
+    border: 1px solid #909090;
+    height: 50px;
+    padding-left: 20px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    width: calc(100% - 20px);
+}
+
+.Main input:focus {
+    outline: none !important;
+    border: 1px solid black;
+
+}
+
+.Main textarea {
+    border: 1px solid #909090;
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    width: calc(100% - 20px);
+    height: 100px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.Main textarea:focus {
+    outline: none !important;
+    border: 1px solid black;
+}
+
+.Main button {
+    float: right;
+}
+
+.MapContainer {
+    height: 400px;
+    width: 100%;
+    z-index: 100;
+    margin-top: 35px;
+}
+
+.Map {
+    width: 100%;
+    height: 400px;
+}
+

@@ -19,16 +19,16 @@ class App extends Component {
         };
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return this.state.page !== nextState.page;
+    }
+
     pageChangeHandler = (page) => {
 
-
-        // setTimeout(function () {
-            this.setState({
-                page: page
-            });
-        // }.bind(this), 1000);
+        this.setState({
+            page: page
+        });
     };
-
 
 
     render() {

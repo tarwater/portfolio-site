@@ -3,6 +3,10 @@
     margin-left: 100px;
 }
 
+.Main button {
+    margin-top: 25px;
+}
+
 .Canvas {
     background-color: transparent;
     /*height: 300px;*/
