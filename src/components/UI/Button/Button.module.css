@@ -7,6 +7,8 @@
     font-family: 'Reem Kufi', sans-serif;
     letter-spacing: 3px;
     font-weight: bold;
+    border: 1px solid #909090;
+    cursor: pointer;
 }
 
 .Hover {

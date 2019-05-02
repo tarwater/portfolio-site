@@ -1,42 +1,8 @@
+
+const colors = ['#A800FF', '#0079FF', '#00F11D', '#FFEF00', '#FF7F00', '#FF0900'];
+let textItems = [];
+
 document.addEventListener("DOMContentLoaded", function (e) {
-
-    // text hover color change & animations
-    let textItems = [];
-    textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("h1"));
-    textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("h2"));
-    textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("p"));
-
-    let colors = ['#A800FF', '#0079FF', '#00F11D', '#FFEF00', '#FF7F00', '#FF0900'];
-
-    for (let elem of textItems) {
-
-        let text = elem.innerHTML.split("");
-
-        for (let i = 0; i < text.length; i++) {
-            if (/^[a-zA-Z()]+$/.test(text[i])) {
-                text[i] = "<span class='blast'>" + text[i] + "</span>";
-            }
-        }
-        elem.innerHTML = text.join("");
-    }
-
-    let blasts = document.getElementsByClassName("blast");
-
-    for (let blast of blasts) {
-        blast.addEventListener("mouseover", function (e) {
-            e.target.style.color = colors[Math.floor(Math.random() * colors.length)];
-            e.target.classList.add("bounce");
-
-            setTimeout(function () {
-                e.target.classList.remove("bounce");
-            }, 800);
-        });
-
-        blast.addEventListener("mouseleave", function (e) {
-            e.target.style.color = '';
-        });
-    }
-
     // home page text particles
 
     let canvas = document.querySelector("#scene"),
@@ -125,18 +91,31 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.font = "bold " + (ww / 2) + "px Reem Kufi";
-        ctx.textAlign = "center";
-        ctx.fillText(copy.value, ww / 2, wh / 1.5 );
+        let divisor;
+
+        if(ww > 960){
+            ctx.font = "bold " + (wh / 1.8) + "px Reem Kufi";
+            ctx.textAlign = "left";
+            ctx.fillText(copy.value, ww / 1.6, wh / 1.5 );
+            divisor = 260;
+        } else if(ww > 530){
+            ctx.font = "bold " + (wh / 2.5) + "px Reem Kufi";
+            ctx.textAlign = "center";
+            ctx.fillText(copy.value, ww / 2, wh / 1.1 );
+            divisor = 150;
+        } else {
+            return;
+        }
 
         let data = ctx.getImageData(0, 0, ww, wh).data;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.globalCompositeOperation = "screen";
 
         particles = [];
-        for (let i = 0; i < ww; i += Math.round(ww / 150)) {
-            for (let j = 0; j < wh; j += Math.round(ww / 150)) {
-                if (data[((i + j * ww) * 4) + 3] > 150) {
+
+        for (let i = 0; i < ww; i += Math.round(ww / divisor)) {
+            for (let j = 0; j < wh; j += Math.round(ww / divisor)) {
+                if (data[((i + j * ww) * 4) + 3] > 0) {
                     particles.push(new Particle(i, j));
                 }
             }
@@ -146,8 +125,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
 
     function onMouseClick() {
-        radius++;
-        if (radius === 5) {
+        radius += 0.5;
+        if (radius >= 4) {
             radius = 0;
         }
     }
@@ -169,3 +148,49 @@ document.addEventListener("DOMContentLoaded", function (e) {
     requestAnimationFrame(render);
 
 });
+
+export function textEffects() {
+
+    let textAppearDelay = 10;
+    textItems = [];
+    textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("h1"));
+    textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("h2"));
+    textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("p"));
+
+    for (let elem of textItems) {
+
+        let text = elem.innerHTML.split("");
+
+        for (let i = 0; i < text.length; i++) {
+            if (/^[a-zA-Z()]+$/.test(text[i])) {
+                text[i] = "<span class='blast'>" + text[i] + "</span>";
+            }
+        }
+        elem.innerHTML = text.join("");
+        textAppearDelay = textAppearDelay + 70;
+        makeOpaque(elem, textAppearDelay)
+    }
+
+    let blasts = document.getElementsByClassName("blast");
+
+    for (let blast of blasts) {
+        blast.addEventListener("mouseover", function (e) {
+            e.target.style.color = colors[Math.floor(Math.random() * colors.length)];
+            e.target.classList.add("bounce");
+
+            setTimeout(function () {
+                e.target.classList.remove("bounce");
+            }, 800);
+        });
+
+        blast.addEventListener("mouseleave", function (e) {
+            e.target.style.color = '';
+        });
+    }
+
+    function makeOpaque(e, delay){
+        setTimeout(function () {
+            e.style.opacity = "1";
+        }, delay);
+    }
+}

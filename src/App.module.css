@@ -79,6 +79,11 @@ h2 {
     color: #595959;
 }
 
+h1, h2, p {
+    transition: opacity 2s;
+    opacity: 0;
+}
+
 :global(.bounce) :global {
     animation: bounce 0.8s ease infinite;
     display: inline-block;

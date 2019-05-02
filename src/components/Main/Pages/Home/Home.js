@@ -20,7 +20,7 @@ class Home extends Component {
                 </div>
                 <canvas className={classes.Canvas} id="scene">
                 </canvas>
-                <input id="copy" type="hidden" value="♥"/>
+                <input id="copy" type="hidden" value="C"/>
             </div>
         )
     }

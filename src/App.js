@@ -5,7 +5,7 @@ import Main from "./components/Main/Main";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faHome, faUser, faTools, faPaperPlane, faKeyboard, faBars} from '@fortawesome/free-solid-svg-icons'
 import {fab} from '@fortawesome/free-brands-svg-icons';
-import './scripts/misc';
+import "./scripts/misc";
 
 library.add(faHome, faUser, faTools, faPaperPlane, faKeyboard, fab, faBars);
 
@@ -20,10 +20,16 @@ class App extends Component {
     }
 
     pageChangeHandler = (page) => {
-        this.setState({
-            page: page
-        });
+
+
+        // setTimeout(function () {
+            this.setState({
+                page: page
+            });
+        // }.bind(this), 1000);
     };
+
+
 
     render() {
         return (

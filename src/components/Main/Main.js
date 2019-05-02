@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
-import classes from './Main.css';
+import classes from './Main.module.css';
 import Home from './Pages/Home/Home';
+import Contact from "./Pages/Contact/Contact";
+import {textEffects} from "../../scripts/misc";
 
 class Main extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    // }
+    componentDidMount() {
+        setTimeout(textEffects, 0);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        setTimeout(textEffects, 0);
+    }
 
     render() {
 
@@ -17,14 +23,15 @@ class Main extends Component {
                 content = <Home pageChangeHandler={this.props.pageChangeHandler}/>;
                 break;
             case "contact":
-                console.log("contact");
+                content = <Contact/>;
                 break;
             default:
                 content = <Home pageChangeHandler={this.props.pageChangeHandler}/>;
         }
 
+
         return (
-            <div className={classes.Page}>
+            <div className={classes.Main}>
                 {content}
             </div>
         );
