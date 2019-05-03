@@ -41,8 +41,8 @@ class NavBar extends Component {
                 <div className={classes.NavButtons}>
                     <NavButton page={this.props.page} icon={"home"} text={"home"}
                                clickHandler={this.props.pageChangeHandler}/>
-                    <NavButton page={this.props.page} icon={"user"} text={"about"}
-                               clickHandler={this.props.pageChangeHandler}/>
+                    {/*<NavButton page={this.props.page} icon={"user"} text={"about"}*/}
+                    {/*           clickHandler={this.props.pageChangeHandler}/>*/}
                     <NavButton page={this.props.page} icon={"tools"} text={"skills"}
                                clickHandler={this.props.pageChangeHandler}/>
                     <NavButton page={this.props.page} icon={"keyboard"} text={"work"}
@@ -61,8 +61,8 @@ class NavBar extends Component {
                     <MobileNavBar page={this.props.page} >
                         <NavButton page={this.props.page} icon={"home"} text={"home"}
                                    clickHandler={this.props.pageChangeHandler}/>
-                        <NavButton page={this.props.page} icon={"user"} text={"about"}
-                                   clickHandler={this.props.pageChangeHandler}/>
+                        {/*<NavButton page={this.props.page} icon={"user"} text={"about"}*/}
+                        {/*           clickHandler={this.props.pageChangeHandler}/>*/}
                         <NavButton page={this.props.page} icon={"tools"} text={"skills"}
                                    clickHandler={this.props.pageChangeHandler}/>
                         <NavButton page={this.props.page} icon={"keyboard"} text={"work"}

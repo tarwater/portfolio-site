@@ -1,0 +1,62 @@
+.Main {
+    margin-top: 120px;
+    padding: 20px;
+}
+
+.Main h1 {
+    font-size: 2.5em;
+}
+
+.Paragraph {
+    margin-bottom: 20px;
+}
+
+.Paragraph span {
+    line-height: 1.2em;
+}
+
+.CanvasContainer {
+    margin-top: 0;
+    height: 500px;
+    width: 100%;
+    /*display: inline-block;*/
+    /*position: fixed;*/
+    /*right: 0;*/
+}
+
+.Canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.Highlight {
+    /*background-color: #d8d8d8;*/
+    /*color: white;*/
+    /*text-decoration: underline;*/
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+@media (min-width: 961px) {
+    .Main {
+        margin-left: 65px;
+        width: 40%;
+        display: inline-block;
+    }
+
+    .CanvasContainer {
+        margin-top: 0;
+        height: 100vh;
+        width: 50%;
+        display: inline-block;
+        position: fixed;
+        right: 0;
+        top: 0;
+    }
+
+    .Canvas {
+        height: 100vh;
+        width: 100%;
+    }
+}

@@ -24,7 +24,6 @@ export function drawParticles() {
     let ww = canvas.width = canvas.clientWidth;
     let wh = canvas.height = canvas.clientHeight;
 
-
     function Particle(x, y) {
         this.x = Math.random() * ww;
         this.y = Math.random() * wh;
@@ -43,8 +42,6 @@ export function drawParticles() {
     }
 
     Particle.prototype.render = function () {
-
-
         this.accX = (this.dest.x - this.x) / 1000;
         this.accY = (this.dest.y - this.y) / 1000;
         this.vx += this.accX;
@@ -58,7 +55,7 @@ export function drawParticles() {
         ctx.globalAlpha = 0.5;
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+        ctx.arc(this.x, this.y, this.r, Math.PI * 2, 0);
         ctx.fill();
 
         let a = this.x - mouse.x;
@@ -71,6 +68,7 @@ export function drawParticles() {
             this.vx += this.accX;
             this.vy += this.accY;
         }
+
 
     };
 
@@ -138,11 +136,11 @@ export function drawParticles() {
     }
 
     function render(a) {
-        requestAnimationFrame(render);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < amount; i++) {
             particles[i].render();
         }
+        requestAnimationFrame(render);
     }
 
     window.addEventListener("resize", initScene);
@@ -161,6 +159,7 @@ export function textEffects() {
     textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("h1"));
     textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("h2"));
     textItems = Array.prototype.concat.apply(textItems, document.getElementsByTagName("p"));
+    textItems = Array.prototype.concat.apply(textItems, document.getElementsByClassName("text"));
 
     for (let elem of textItems) {
 
@@ -402,3 +401,133 @@ export function initGoogleMap() {
 
     });
 }
+
+export function drawSkills() {
+    let canvas = document.querySelector("#skills-scene"),
+        ctx = canvas.getContext("2d");
+
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
+    let mouse = {
+        x: 0,
+        y: 0
+    };
+
+
+    ctx.font = "bold 16px Reem Kufi";
+    ctx.textAlign = "center";
+
+    const skills = ['PHP', 'Javascript', 'React', 'Linux', 'Laravel', 'Node.js'];
+    let circles = [];
+
+    function Circle(x, y, r, text, color) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.text = text;
+        this.color = color;
+        this.dx = Math.random() > 0.5 ? 1.5 : -1.5;
+        this.dy = Math.random() > 0.5 ? 1.5 : -1.5;
+        this.accX = 100;
+        this.accY = 100;
+        this.initialRadius = 0;
+    }
+
+    Circle.prototype.render = function () {
+
+        if (this.x + this.dx > canvas.width - this.r || this.x + this.dx < this.r) {
+            this.dx = -this.dx;
+        }
+        if (this.y + this.dy > canvas.height - this.r || this.y + this.dy < this.r) {
+            this.dy = -this.dy;
+        }
+
+        this.x += this.dx;
+        this.y += this.dy;
+
+        ctx.globalAlpha = 0.5;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        let rad = this.initialRadius < this.r ? this.initialRadius : this.r;
+        ctx.arc(this.x, this.y, rad, Math.PI * 2, 0);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = 'gray';
+        ctx.fillText(this.text, this.x, this.y + 8);
+
+        let a = this.x - mouse.x;
+        let b = this.y - mouse.y;
+
+        let distance = Math.sqrt(a * a + b * b);
+
+        if (distance < (this.r)) {
+            this.accX = (this.x - mouse.x) / 150;
+            this.accY = (this.y - mouse.y) / 150;
+            this.dx += this.accX;
+            this.dy += this.accY;
+        } else {
+            if (Math.abs(this.dx) > 1.5) {
+                if (this.dx > 0) {
+                    this.dx -= .1;
+                } else {
+                    this.dx += .1;
+                }
+            }
+            if (Math.abs(this.dy) > 1.5) {
+                if (this.dy > 0) {
+                    this.dy -= .1;
+                } else {
+                    this.dy += .1;
+                }
+            }
+        }
+
+        if(this.initialRadius < this.r){
+            this.initialRadius += 2;
+        }
+    };
+
+    for (let i = 0; i < skills.length; i++) {
+        let x = Math.random() * (canvas.width - 120 - 120) + 120;
+        let y = Math.random() * (canvas.height - 120 - 120) + 120;
+        let r = canvas.width / 8;//Math.random() * (canvas.width / 8) + 40;
+        let c = new Circle(x, y, r, skills[i], colors[i]);
+        circles.push(c);
+    }
+
+    function render(a) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < circles.length; i++) {
+            circles[i].render();
+        }
+        requestAnimationFrame(render);
+
+    }
+
+    function onMouseMove(e) {
+        let rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    }
+
+    function onTouchMove(e) {
+        let rect = canvas.getBoundingClientRect();
+
+        if (e.touches.length > 0) {
+            mouse.x = e.touches[0].clientX - rect.left;
+            mouse.y = e.touches[0].clientY - rect.top;
+        }
+    }
+
+    function onTouchEnd() {
+        mouse.x = -9999;
+        mouse.y = -9999;
+    }
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("touchend", onTouchEnd);
+    requestAnimationFrame(render);
+}
+

@@ -3,6 +3,7 @@ import classes from './Main.module.css';
 import Home from './Pages/Home/Home';
 import Contact from "./Pages/Contact/Contact";
 import {textEffects} from "../../scripts/misc";
+import Skills from "./Pages/Skills/Skills";
 
 class Main extends Component {
 
@@ -24,6 +25,9 @@ class Main extends Component {
                 break;
             case "contact":
                 content = <Contact/>;
+                break;
+            case "skills":
+                content = <Skills/>;
                 break;
             default:
                 content = <Home pageChangeHandler={this.props.pageChangeHandler}/>;
