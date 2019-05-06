@@ -7,6 +7,9 @@ const colors = ['#A800FF',
     '#FF7F00',
     '#FF0900'];
 let textItems = [];
+let homeMounted = false;
+let skillsMounted = false;
+let workMounted = false;
 
 export function drawParticles() {
 
@@ -18,6 +21,8 @@ export function drawParticles() {
         amount = 0,
         mouse = {x: 0, y: 0},
         radius = 0.5;
+
+    homeMounted = true;
 
     let copy = document.querySelector("#copy");
 
@@ -136,6 +141,9 @@ export function drawParticles() {
     }
 
     function render(a) {
+
+        if (!homeMounted) return;
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < amount; i++) {
             particles[i].render();
@@ -150,6 +158,10 @@ export function drawParticles() {
     window.addEventListener("touchend", onTouchEnd);
     initScene();
     requestAnimationFrame(render);
+}
+
+export function unmountHome() {
+    homeMounted = false;
 }
 
 export function textEffects() {
@@ -409,16 +421,17 @@ export function drawSkills() {
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
 
+    skillsMounted = true;
+
     let mouse = {
         x: 0,
         y: 0
     };
 
-
     ctx.font = "bold 16px Reem Kufi";
     ctx.textAlign = "center";
 
-    const skills = ['PHP', 'Javascript', 'React', 'Linux', 'Laravel', 'Node.js'];
+    const skills = ['PHP', 'React', 'Node.js', 'Javascript', 'Linux', 'Laravel'];
     let circles = [];
 
     function Circle(x, y, r, text, color) {
@@ -427,7 +440,7 @@ export function drawSkills() {
         this.r = r;
         this.text = text;
         this.color = color;
-        this.dx = Math.random() > 0.5 ? 1.5 : -1.5;
+        this.dx = Math.random() > 0.5 ? 1.5 * Math.random() : -1.5 * Math.random();
         this.dy = Math.random() > 0.5 ? 1.5 : -1.5;
         this.accX = 100;
         this.accY = 100;
@@ -483,7 +496,7 @@ export function drawSkills() {
             }
         }
 
-        if(this.initialRadius < this.r){
+        if (this.initialRadius < this.r) {
             this.initialRadius += 2;
         }
     };
@@ -497,6 +510,8 @@ export function drawSkills() {
     }
 
     function render(a) {
+        if (!skillsMounted) return;
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < circles.length; i++) {
             circles[i].render();
@@ -529,5 +544,75 @@ export function drawSkills() {
     window.addEventListener("touchmove", onTouchMove);
     window.addEventListener("touchend", onTouchEnd);
     requestAnimationFrame(render);
+}
+
+export function unmountSkills() {
+    skillsMounted = false;
+}
+
+export function workBackground() {
+
+    workMounted = true;
+
+    function initScene() {
+
+        let canvas = document.querySelector("#work-scene"),
+            ctx = canvas.getContext("2d");
+
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+
+        let circles = [];
+
+        function Circle(x, y, r, color) {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+            this.color = color;
+            this.speed = Math.random() * .5;
+        }
+
+        Circle.prototype.render = function () {
+
+            if (this.y <= 0) {
+                this.y = canvas.height;
+            }
+
+            this.y -= this.speed;
+
+            ctx.globalAlpha = 0.2;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, Math.PI * 2, 0);
+            ctx.fill();
+        };
+
+        for (let i = 0; i < canvas.width; i++) {
+
+            let x = Math.random() * canvas.width;
+            let y = Math.random() * canvas.height;
+            let c = new Circle(x, y, Math.random() * 2 + 0.5, colors[Math.floor(Math.random() * colors.length)])
+            circles.push(c);
+        }
+
+        function render(a) {
+            if (!workMounted) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < circles.length; i++) {
+                circles[i].render();
+            }
+            requestAnimationFrame(render);
+        }
+
+        requestAnimationFrame(render);
+    }
+
+    initScene();
+    window.addEventListener("resize", initScene);
+}
+
+export function unmountWork() {
+    workMounted = false;
 }
 

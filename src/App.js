@@ -4,10 +4,10 @@ import NavBar from "./components/Navbar/Navbar";
 import Main from "./components/Main/Main";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faHome, faUser, faTools, faPaperPlane, faKeyboard, faBars} from '@fortawesome/free-solid-svg-icons'
-import {fab} from '@fortawesome/free-brands-svg-icons';
+import {faAndroid, fab, faJsSquare, faNode, faReact} from '@fortawesome/free-brands-svg-icons';
 import "./scripts/misc";
 
-library.add(faHome, faUser, faTools, faPaperPlane, faKeyboard, fab, faBars);
+library.add(faHome, faUser, faTools, faPaperPlane, faKeyboard, fab, faBars, faNode, faJsSquare, faAndroid, faReact);
 
 class App extends Component {
 

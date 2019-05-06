@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import classes from "./Skills.module.css";
-import {drawSkills, initGoogleMap} from "../../../../scripts/misc";
+import {drawSkills, unmountSkills} from "../../../../scripts/misc";
 
 class Skills extends Component {
 
     componentDidMount() {
         drawSkills();
+    }
+
+    componentWillUnmount() {
+        unmountSkills();
     }
 
     render(){

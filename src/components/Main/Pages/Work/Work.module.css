@@ -1,0 +1,104 @@
+.Main {
+    margin-top: 120px;
+    padding: 20px;
+}
+
+.Main h1 {
+    font-size: 2.5em;
+}
+
+.Paragraph {
+    margin-bottom: 20px;
+}
+
+.List {
+    line-height: 2.2em;
+    font-size: 1.2em;
+}
+
+li:first-child {
+    animation: text 2s forwards;
+    color: rgba(48,48,48,0);
+}
+
+.List li a {
+    padding-bottom: 2px;
+    border-bottom: 2px solid rgba(144,144,144,0);
+    animation: border 2s forwards;
+    color: rgba(48,48,48,0);
+}
+
+.List li a:hover {
+    background: linear-gradient(to right, #A800FF, #0079FF, #00F11D, #FFEF00, #FF7F00, #FF0900);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: Gradient 1.5s linear infinite;
+}
+
+.IconContainer {
+    display: flex;
+    justify-content: space-around;
+    color: #b5b5b5;
+    font-size: 2.5em;
+}
+
+@keyframes border {
+    to {
+        border-bottom: 2px solid rgba(144,144,144,1);
+        color: rgba(48,48,48,1);
+    }
+}
+
+@keyframes text {
+    to {
+        color: rgba(48,48,48,1);
+    }
+}
+
+.Active {
+    color: black;
+}
+
+.CanvasContainer {
+    margin-top: 0;
+    /*height: 500px;*/
+    width: 100%;
+    /*display: inline-block;*/
+    /*position: fixed;*/
+    /*right: 0;*/
+}
+
+.Canvas {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+@keyframes Gradient {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0 50%
+    }
+}
+
+@media (min-width: 961px){
+    .Main {
+        margin-left: 65px;
+        width: 30%;
+        display: inline-block;
+    }
+
+    .IconContainer {
+        display: inline-flex;
+        width: calc(65% - 65px);
+        font-size: 5.5em;
+    }
+}

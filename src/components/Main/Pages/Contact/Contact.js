@@ -18,14 +18,14 @@ class Contact extends Component {
                     <br/>
                     <p>If you have any questions, please feel free to contact me using the form below.</p>
                     <br/>
-                    <form>
-                    <input type="text" placeholder="Name"/>
+                    <form action="https://formspree.io/clayholt@gmx.com" method="POST">
+                    <input type="text" name="name" placeholder="Name"/>
                         <span></span>
-                    <input type="text" placeholder="Email" required={true}/>
+                    <input type="text" name="email" placeholder="Email" required={true}/>
                         <span></span>
-                        <input type="text" placeholder="Subject"/>
+                        <input type="text" name="subject" placeholder="Subject"/>
                         <span></span>
-                        <textarea placeholder={"Message"} required={true}/>
+                        <textarea name="message" placeholder={"Message"} required={true}/>
                         <span></span>
                         <Button>SEND</Button>
                     </form>

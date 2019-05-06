@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classes from './Home.module.css';
 import Button from '../../../UI/Button/Button';
-import {drawParticles} from "../../../../scripts/misc";
+import {drawParticles, unmountHome} from "../../../../scripts/misc";
 
 class Home extends Component {
 
@@ -11,6 +11,10 @@ class Home extends Component {
 
     componentDidMount() {
         drawParticles();
+    }
+
+    componentWillUnmount() {
+        unmountHome();
     }
 
     render() {
