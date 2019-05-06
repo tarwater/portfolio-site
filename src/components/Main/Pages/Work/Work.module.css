@@ -58,6 +58,7 @@ li:first-child {
 
 .Active {
     color: black;
+    transition: color 0.5s;
 }
 
 .CanvasContainer {
