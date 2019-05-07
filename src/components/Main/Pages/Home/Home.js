@@ -10,7 +10,9 @@ class Home extends Component {
     };
 
     componentDidMount() {
-        drawParticles();
+        setTimeout(function () {
+            drawParticles();
+        }, 0);
     }
 
     componentWillUnmount() {
