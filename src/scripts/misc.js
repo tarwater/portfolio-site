@@ -156,7 +156,9 @@ export function drawParticles() {
     window.addEventListener("touchmove", onTouchMove);
     window.addEventListener("click", onMouseClick);
     window.addEventListener("touchend", onTouchEnd);
-    initScene();
+
+    document.fonts.ready.then(initScene);
+
     requestAnimationFrame(render);
 }
 
