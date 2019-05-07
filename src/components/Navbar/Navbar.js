@@ -51,8 +51,8 @@ class NavBar extends Component {
                                clickHandler={this.props.pageChangeHandler}/>
                 </div>
                 <div className={classes.SecondaryNav}>
-                    <SecondaryNavButton link={"https://github.com/tarwater"} icon={['fab', 'linkedin']}/>
-                    <SecondaryNavButton link={"https://www.linkedin.com/in/clay-holt"} icon={['fab', "github"]}/>
+                    <SecondaryNavButton link={"https://github.com/tarwater"} icon={['fab', 'github']}/>
+                    <SecondaryNavButton link={"https://www.linkedin.com/in/clay-holt"} icon={['fab', "linkedin"]}/>
                 </div>
                 <div className={classes.HamburgerMenuContainer}>
                     <HamburgerMenu clickHandler={this.hamburgerClick}/>
