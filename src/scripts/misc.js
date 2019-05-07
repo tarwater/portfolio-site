@@ -418,132 +418,140 @@ export function drawSkills() {
     let canvas = document.querySelector("#skills-scene"),
         ctx = canvas.getContext("2d");
 
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+    function initScene() {
 
-    skillsMounted = true;
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
 
-    let mouse = {
-        x: 0,
-        y: 0
-    };
+        skillsMounted = true;
 
-    ctx.font = "bold 16px Reem Kufi";
-    ctx.textAlign = "center";
+        let mouse = {
+            x: 0,
+            y: 0
+        };
 
-    const skills = ['PHP', 'React', 'Node.js', 'Javascript', 'Linux', 'Laravel'];
-    let circles = [];
+        ctx.font = "bold 16px Reem Kufi";
+        ctx.textAlign = "center";
 
-    function Circle(x, y, r, text, color) {
-        this.x = x;
-        this.y = y;
-        this.r = r;
-        this.text = text;
-        this.color = color;
-        this.dx = Math.random() > 0.5 ? 1.5 * Math.random() : -1.5 * Math.random();
-        this.dy = Math.random() > 0.5 ? 1.5 : -1.5;
-        this.accX = 100;
-        this.accY = 100;
-        this.initialRadius = 0;
-    }
+        const skills = ['PHP', 'React', 'Node.js', 'Javascript', 'Linux', 'Laravel'];
+        let circles = [];
 
-    Circle.prototype.render = function () {
-
-        if (this.x + this.dx > canvas.width - this.r || this.x + this.dx < this.r) {
-            this.dx = -this.dx;
-        }
-        if (this.y + this.dy > canvas.height - this.r || this.y + this.dy < this.r) {
-            this.dy = -this.dy;
+        function Circle(x, y, r, text, color) {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+            this.text = text;
+            this.color = color;
+            this.dx = Math.random() > 0.5 ? 1.5 * Math.random() : -1.5 * Math.random();
+            this.dy = Math.random() > 0.5 ? 1.5 : -1.5;
+            this.accX = 100;
+            this.accY = 100;
+            this.initialRadius = 0;
         }
 
-        this.x += this.dx;
-        this.y += this.dy;
+        Circle.prototype.render = function () {
 
-        ctx.globalAlpha = 0.5;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        let rad = this.initialRadius < this.r ? this.initialRadius : this.r;
-        ctx.arc(this.x, this.y, rad, Math.PI * 2, 0);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = 'gray';
-        ctx.fillText(this.text, this.x, this.y + 8);
+            if (this.x + this.dx > canvas.width - this.r || this.x + this.dx < this.r) {
+                this.dx = -this.dx;
+            }
+            if (this.y + this.dy > canvas.height - this.r || this.y + this.dy < this.r) {
+                this.dy = -this.dy;
+            }
 
-        let a = this.x - mouse.x;
-        let b = this.y - mouse.y;
+            this.x += this.dx;
+            this.y += this.dy;
 
-        let distance = Math.sqrt(a * a + b * b);
+            ctx.globalAlpha = 0.5;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            let rad = this.initialRadius < this.r ? this.initialRadius : this.r;
+            ctx.arc(this.x, this.y, rad, Math.PI * 2, 0);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = 'gray';
+            ctx.fillText(this.text, this.x, this.y + 8);
 
-        if (distance < (this.r)) {
-            this.accX = (this.x - mouse.x) / 150;
-            this.accY = (this.y - mouse.y) / 150;
-            this.dx += this.accX;
-            this.dy += this.accY;
-        } else {
-            if (Math.abs(this.dx) > 1.5) {
-                if (this.dx > 0) {
-                    this.dx -= .1;
-                } else {
-                    this.dx += .1;
+            let a = this.x - mouse.x;
+            let b = this.y - mouse.y;
+
+            let distance = Math.sqrt(a * a + b * b);
+
+            if (distance < (this.r)) {
+                this.accX = (this.x - mouse.x) / 150;
+                this.accY = (this.y - mouse.y) / 150;
+                this.dx += this.accX;
+                this.dy += this.accY;
+            } else {
+                if (Math.abs(this.dx) > 1.5) {
+                    if (this.dx > 0) {
+                        this.dx -= .1;
+                    } else {
+                        this.dx += .1;
+                    }
+                }
+                if (Math.abs(this.dy) > 1.5) {
+                    if (this.dy > 0) {
+                        this.dy -= .1;
+                    } else {
+                        this.dy += .1;
+                    }
                 }
             }
-            if (Math.abs(this.dy) > 1.5) {
-                if (this.dy > 0) {
-                    this.dy -= .1;
-                } else {
-                    this.dy += .1;
-                }
+
+            if (this.initialRadius < this.r) {
+                this.initialRadius += 2;
+            }
+        };
+
+        for (let i = 0; i < skills.length; i++) {
+            let x = Math.random() * (canvas.width - 120 - 120) + 120;
+            let y = Math.random() * (canvas.height - 120 - 120) + 120;
+            let r = canvas.width / 8;//Math.random() * (canvas.width / 8) + 40;
+            let c = new Circle(x, y, r, skills[i], colors[i]);
+            circles.push(c);
+        }
+
+        function render(a) {
+            if (!skillsMounted) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < circles.length; i++) {
+                circles[i].render();
+            }
+            requestAnimationFrame(render);
+
+        }
+
+        function onMouseMove(e) {
+            let rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        }
+
+        function onTouchMove(e) {
+            let rect = canvas.getBoundingClientRect();
+
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX - rect.left;
+                mouse.y = e.touches[0].clientY - rect.top;
             }
         }
 
-        if (this.initialRadius < this.r) {
-            this.initialRadius += 2;
+        function onTouchEnd() {
+            mouse.x = -9999;
+            mouse.y = -9999;
         }
-    };
 
-    for (let i = 0; i < skills.length; i++) {
-        let x = Math.random() * (canvas.width - 120 - 120) + 120;
-        let y = Math.random() * (canvas.height - 120 - 120) + 120;
-        let r = canvas.width / 8;//Math.random() * (canvas.width / 8) + 40;
-        let c = new Circle(x, y, r, skills[i], colors[i]);
-        circles.push(c);
-    }
-
-    function render(a) {
-        if (!skillsMounted) return;
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < circles.length; i++) {
-            circles[i].render();
-        }
         requestAnimationFrame(render);
 
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("touchmove", onTouchMove);
+        window.addEventListener("touchend", onTouchEnd);
     }
 
-    function onMouseMove(e) {
-        let rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-    }
 
-    function onTouchMove(e) {
-        let rect = canvas.getBoundingClientRect();
-
-        if (e.touches.length > 0) {
-            mouse.x = e.touches[0].clientX - rect.left;
-            mouse.y = e.touches[0].clientY - rect.top;
-        }
-    }
-
-    function onTouchEnd() {
-        mouse.x = -9999;
-        mouse.y = -9999;
-    }
-
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("touchmove", onTouchMove);
-    window.addEventListener("touchend", onTouchEnd);
-    requestAnimationFrame(render);
+    window.addEventListener("resize", initScene);
+    initScene();
 }
 
 export function unmountSkills() {
@@ -555,6 +563,8 @@ export function workBackground() {
     workMounted = true;
 
     function initScene() {
+
+        if (!workMounted) return;
 
         let canvas = document.querySelector("#work-scene"),
             ctx = canvas.getContext("2d");
