@@ -67,8 +67,8 @@ class Work extends Component {
                                onMouseLeave={this.reset}>CRUD Demo</a></li>
                         <li><a className={"js"} href="/projects/snake" onMouseOver={this.onHover}
                                onMouseLeave={this.reset}>Snake Game</a></li>
-                        <li><a className={"js"} href="/projects/simon" onMouseOver={this.onHover}
-                               onMouseLeave={this.reset}>Simon</a></li>
+                        {/*<li><a className={"js"} href="/projects/simon" onMouseOver={this.onHover}*/}
+                        {/*       onMouseLeave={this.reset}>Simon</a></li>*/}
                     </ul>
                 </div>
                 <div className={classes.IconContainer}>
